@@ -1,0 +1,1097 @@
+<div id="authBox">
+  <h3>로그인 / 회원가입</h3>
+
+  <input id="email" placeholder="이메일">
+  <input id="password" type="password" placeholder="비밀번호">
+
+  <button onclick="signup()">회원가입</button>
+  <button onclick="login()">로그인</button>
+  <button onclick="logout()">로그아웃</button>
+</div>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JTT OTT</title>
+
+<style>
+body {
+  margin: 0;
+  background: #0b0b0b;
+  color: white;
+  font-family: Arial;
+}
+
+header {
+  background: black;
+  color: #ff0000;
+  padding: 15px 25px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.content-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.content-item {
+  width: 220px;
+  cursor: pointer;
+}
+
+
+.content-item img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.episodes {
+  margin-top: 30px;
+}
+
+.episode {
+  padding: 10px;
+  background: #222;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.episode:hover {
+  background: #444;
+}
+
+.player {
+  margin-top: 30px;
+  text-align: center;
+}
+
+iframe {
+  width: 80%;
+  max-width: 900px;
+  height: 500px;
+  border: none;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .content-item {
+    width: 32%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header id="logo">🎬 JTT</header>
+
+<!-- 🔥 검색창 (무조건 보이게) -->
+<input 
+  type="text" 
+  id="searchInput" 
+  placeholder="작품 검색..." 
+  onkeyup="searchContent()" 
+  style="padding:15px; width:100%; font-size:18px; margin:10px 0;">
+
+<div id="searchResults" class="content-list"></div>
+
+<!-- 🎬 플레이어 -->
+<div class="player" id="playerBox" style="display:none;">
+  <iframe id="player" allow="autoplay" allowfullscreen></iframe>
+</div>
+
+<!-- 📺 에피소드 목록 -->
+<div class="episodes" id="episodeList"></div>
+
+</div>
+
+<h2>🔥 콘텐츠</h2>
+<div class="container">
+
+  <!-- 🔒 개발자 전용 -->
+  <div id="privateContent" style="display:none;">
+    <div class="section">
+      <h2>개발자 전용 컨텐츠</h2>
+
+      <div class="content-list">
+
+        <div class="content-item" onclick="showEpisodes20()">
+          <img src="https://imgur.com/U9YTotb.png">
+          <p>김민재 다시보기 1</p>
+        </div>
+
+        <div class="content-item" onclick="showEpisodes21()">
+          <img src="https://imgur.com/U9YTotb.png">
+          <p>김민재 다시보기 2</p>
+        </div>
+
+        <div class="content-item" onclick="showEpisodes22()">
+          <img src="https://imgur.com/U9YTotb.png">
+          <p>김민재 다시보기 3</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<div class="section">
+  <h2>미라큘러스: 레이디버그와 블랙캣</h2>
+
+<div class="content-list">
+
+<!-- 🎥 작품 1 -->
+<div class="content-item" onclick="showEpisodes1()">
+  <img src="https://imgur.com/oNPIv8I.png">
+  <p>미라큘러스: 레이디버그와 블랙캣 시즌1</p>
+</div>
+
+<!-- 🎥 작품 13 -->
+<div class="content-item" onclick="showEpisodes13()">
+  <img src="https://imgur.com/vLHNzKw.png">
+  <p>미라큘러스: 레이디버그와 블랙캣 시즌2</p>
+</div>
+
+<!-- 🎥 작품 15 -->
+<div class="content-item" onclick="showEpisodes15()">
+  <img src="https://imgur.com/cUjIQRI.png">
+  <p>미라큘러스: 레이디버그와 블랙캣 시즌3</p>
+</div>
+
+<!-- 🎥 작품 16 -->
+<div class="content-item" onclick="showEpisodes16()">
+  <img src="https://imgur.com/PbSAnuA.png">
+  <p>미라큘러스: 레이디버그와 블랙캣 시즌4</p>
+</div>
+
+<!-- 🎥 작품 17 -->
+<div class="content-item" onclick="showEpisodes17()">
+  <img src="https://imgur.com/aFRprUY.png">
+  <p>미라큘러스: 레이디버그와 블랙캣 시즌5</p>
+</div>
+
+<!-- 🎥 작품 12 -->
+<div class="content-item" onclick="showEpisodes12()">
+  <img src="https://imgur.com/0KMH5HW.png">
+  <p>미라큘러스: 레이디버그와 블랙캣 시즌6</p>
+</div>
+
+<!-- 🎥 작품 2 -->
+<div class="content-item" onclick="showEpisodes2()">
+  <img src="https://imgur.com/t7t4D9a.png">
+  <p>미라큘러스 월드</p>
+</div>
+
+<!-- 🎥 작품 3 -->
+<div class="content-item" onclick="showEpisodes3()">
+  <img src="https://imgur.com/gP31DZC.png">
+  <p>미라큘러스: 레이디버그와 블랙캣 더 무비</p>
+</div>
+</div>
+
+<div class="section">
+  <h2>나의 뜨거운 아이돌 활동, 아이엠스타!</h2>
+
+<div class="content-list">
+
+<!-- 🎥 작품 11 -->
+<div class="content-item" onclick="showEpisodes11()">
+  <img src="https://imgur.com/1vPG19G.png">
+  <p>아이엠스타! 2기</p>
+</div>
+
+<!-- 🎥 작품 14 -->
+<div class="content-item" onclick="showEpisodes14()">
+  <img src="https://imgur.com/Ew9FCgW.png">
+  <p>아이엠스타! 3기</p>
+</div>
+
+<!-- 🎥 작품 7 -->
+<div class="content-item" onclick="showEpisodes7()">
+  <img src="https://imgur.com/XpmVSC8.png">
+  <p>아이엠스타! 4기</p>
+</div>
+
+<!-- 🎥 작품 8 -->
+<div class="content-item" onclick="showEpisodes8()">
+  <img src="https://imgur.com/pph0STL.png">
+  <p>극장판 아이엠스타! 꿈의 오디션!</p>
+</div>
+
+<!-- 🎥 작품 18 -->
+<div class="content-item" onclick="showEpisodes18()">
+  <img src="https://imgur.com/QTjPGol.png">
+  <p>아이엠스타! 뮤직어워드</p>
+</div>
+
+<!-- 🎥 작품 4 -->
+<div class="content-item" onclick="showEpisodes4()">
+  <img src="https://imgur.com/od8l5Dp.png">
+  <p>아이엠스타!X프리파라 더 무비 - 만남의 기적! -</p>
+</div>
+
+<!-- 🎥 작품 9 -->
+<div class="content-item" onclick="showEpisodes9()">
+  <img src="https://imgur.com/Wb4qvqY.png">
+  <p>아이엠스타! 10주년 극장판 미래로의 스타웨이 (한글 자막)</p>
+</div>
+</div>
+
+<div class="section">
+  <h2>추천 작품들</h2>
+
+<div class="content-list">
+
+<!-- 🎥 작품 5 -->
+<div class="content-item" onclick="showEpisodes5()">
+  <img src="https://imgur.com/dadPIdR.png">
+  <p>포켓몬 제너레이션즈</p>
+</div>
+
+<!-- 🎥 작품 6 -->
+<div class="content-item" onclick="showEpisodes6()">
+  <img src="https://imgur.com/QEzqxkI.png">
+  <p>타몬 군 지금 어느 쪽!? (한글 자막)</p>
+</div>
+
+<!-- 🎥 작품 10 -->
+<div class="content-item" onclick="showEpisodes10()">
+  <img src="https://imgur.com/vlzNoOs.png">
+  <p>스즈메의 문단속</p>
+</div>
+
+<!-- 🎥 작품 19 -->
+<div class="content-item" onclick="showEpisodes19()">
+  <img src="https://imgur.com/FlxRvHl.png">
+  <p>너의 이름은.</p>
+</div>
+
+</div>
+
+<script>
+
+// 📺 작품 1 에피소드
+function showEpisodes1() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 미라큘러스: 레이디버그와 블랙캣 시즌1</h3>
+
+    <div class="episode" onclick="playDrive('1aul36ktEnL2ZYp7mDFCQifw8zvkaNIKu')">1화, 분노의 폭풍</div>
+    <div class="episode" onclick="playDrive('1b0L5Kqa-pGDcFpSlaWcEfdkQct6obEzI')">2화, 널 그리고, 또 지우고</div>
+    <div class="episode" onclick="playDrive('1b1HI9fJF8Mu1YCnOJ07BpYJQgVlA4a-t')">3화, 내 친구 알리야</div>
+    <div class="episode" onclick="playDrive('1b5JXM45ema2K48QT0B_k0KG9_lwTvXBS')">4화, 향수 공주</div>
+    <div class="episode" onclick="playDrive('1b6bUI6j1HGp0a-LlC-RBH6vDCoSmLep1')">5화, 큐피드의 화살</div>
+    <div class="episode" onclick="playDrive('1bFWwVyyOmjONJiK4ulgwlqiZ3heZwFPd')">6화, 비둘기 신사의 역습</div>
+    <div class="episode" onclick="playDrive('1bHhrzwex2kxEDsSVHgceP3m2s83K04qV')">7화, 사생팬의 집착</div>
+    <div class="episode" onclick="playDrive('1bHveOLIDgNL6fDp9h88-q51ejO1l_buQ')">8화, 두 명의 블랙캣</div>
+    <div class="episode" onclick="playDrive('1bMraR9xygxD3NMGuMzheeYduf5i_zISZ')">9화, 어른들을 돌려줘</div>
+    <div class="episode" onclick="playDrive('1bOJiy3dJtpOeJeHtYY31Y0m2jEnrjZuf')">10화, 카드 마스터의 분노</div>
+    <div class="episode" onclick="playDrive('1bUcYXOOaqFWVe-ldZCAy2McRRemstBRt')">11화, 로저캅</div>
+    <div class="episode" onclick="playDrive('1bXlg6QefBSUMu1Lu6DaUjENYR8nF-WJD')">12화, 게임 챔피언</div>
+    <div class="episode" onclick="playDrive('1bYEjq0i-ztjYmzg4tMG4e2jkOep9bKMz')">13화, 동물원의 폭주</div>
+    <div class="episode" onclick="playDrive('1bYSC6vqnBpEY-PBtxsiK-QaXgbh5xZ2K')">14화, 그댈 기사로 임명하노라</div>
+    <div class="episode" onclick="playDrive('1bbM02RNRS5ioJKCUI00f3J6V1CEtQOnh')">15화, 파라오의 여인</div>
+    <div class="episode" onclick="playDrive('1bkXxyYa14DFOtCKMnE9jMWqGGNlgzHiN')">16화, 백 투 더 레이디버그</div>
+    <div class="episode" onclick="playDrive('1c1GR9w0nvR6roOHYcuHb8F3_3pkCK-UM')">17화, 공포 영화 찍기</div>
+    <div class="episode" onclick="playDrive('1c8Nel6ZhY3W4qAgN2iCZ1GMWS8zaglL-')">18화, 인형술사 마농</div>
+    <div class="episode" onclick="playDrive('1cC6cyOdEOfETWJN7yK0e5ZNPFas135sJ')">19화, 딸을 위한 팬터마임</div>
+    <div class="episode" onclick="playDrive('1cO2en1jGB09UGcnMyr50SWY2mxrOhAyG')">20화, 악마의 기타리스트</div>
+    <div class="episode" onclick="playDrive('1cOV3B0zrUc3UjQPr7vXHt-0CmpRwOUG7')">21화, 쥘레카의 징크스</div>
+    <div class="episode" onclick="playDrive('1ck4s9gatrOEwgFRbqx1moBPftEPWKMwX')">22화, 탄생! 레이디버그 1</div>
+    <div class="episode" onclick="playDrive('1crztUycd_ZDNA7-WSMf2kHehieFdD9xP')">23화, 탄생! 레이디버그 2</div>
+    <div class="episode" onclick="playDrive('1cteBz4MpkHF6lmwLj05qZSkzZzeIZ_Bi')">24화, 변신! 클로이</div>
+    <div class="episode" onclick="playDrive('1cu6vIflXzmae0fFjYzYSUEw-D-g7fwuh')">25화, 외삼촌은 일류요리사</div>
+    <div class="episode" onclick="playDrive('1cwlO9GmVAPjULR_r_lOk5d3LCG1AE8vu')">26화, 수상한 전학생</div>
+  `;
+}
+
+// 📺 작품 2 에피소드
+function showEpisodes2() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 미라큘러스 월드</h3>
+
+    <div class="episode" onclick="playDrive('17M4cjqjQ2M3U9yiqq_MUuQjUe2wu_I_S')">뉴욕, 하나된 영웅들!</div>
+    <div class="episode" onclick="playDrive('1CPvTorPw1wwC3cp97UHGzdj18yoIxv8B')">상하이, 레이디 드래곤의 전설</div>
+    <div class="episode" onclick="playDrive('1jlIPZxJQ4mw4RI9ZzHMs7t_CyKWJOWPz')">파리, 셰이디버그와 블랙클로</div>
+    <div class="episode" onclick="playDrive('1k-ILYIr3hZ3sIW0_L8BDxHHQkoZNoVqo')">런던, 시간의 끝에서</div>
+    <div class="episode" onclick="playDrive('1FEKf8bP__GXPnV0pubiLoBDRsYS8sVpG')">도쿄, 스텔라포스 (한글 자막)</div>
+  `;
+}
+
+// 📺 작품 3 에피소드
+function showEpisodes3() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 미라큘러스: 레이디버그와 블랙캣 더 무비</h3>
+
+    <div class="episode" onclick="playDrive('1xtKy_aPoJqSaoqaBwHqclx--9jEVNkLE')">미라큘러스: 레이디버그와 블랙캣 더 무비</div>
+  `;
+}
+
+// 📺 작품 4 에피소드
+function showEpisodes4() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 아이엠스타!X프리파라 더 무비 - 만남의 기적! -</h3>
+
+    <div class="episode" onclick="playDrive('1NHE5U5aHCQ43FV053PhUPnPJPkPiYLTl')">아이엠스타!X프리파라 더 무비 - 만남의 기적! -</div>
+  `;
+}
+
+// 📺 작품 5 에피소드
+function showEpisodes5() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 포켓몬 제너레이션즈</h3>
+
+    <div class="episode" onclick="playDrive('1-zUKRdN2D7MZabnApqgHw5Nu2P4DeHNt')">1화, 모험</div>
+    <div class="episode" onclick="playDrive('106H95Ow0J2PubV41-d6nIvretYDHJz3z')">2화, 추적</div>
+    <div class="episode" onclick="playDrive('109MOuKUHneaZS8qeZrhVnrooIHIPjMHX')">3화, 도전자</div>
+    <div class="episode" onclick="playDrive('109mDydJ39j553pjglhtLhgcSu78Yh4B9')">4화, 분노의 호수</div>
+    <div class="episode" onclick="playDrive('109z8W7mXgabFVRzIZcL7RTiVh7s1wzvP')">5화, 계승</div>
+    <div class="episode" onclick="playDrive('10Gabn73gAbQNsz23o8QJRdWxc8GDuoD-')">6화, 재생</div>
+    <div class="episode" onclick="playDrive('10KW0qEjZKZo5YmmHLhy4OSeTqTBIIRpp')">7화, 비전</div>
+    <div class="episode" onclick="playDrive('10O6Dwp8lmCoD63HJzeMYz4i0W7JMHFfT')">8화, 해저 동굴</div>
+    <div class="episode" onclick="playDrive('10Oe5O4r3KwqsHANQ_SVMThyz0AkyegQ5')">9화, 특종</div>
+    <div class="episode" onclick="playDrive('10V8boA3GIpsly1sCCIpi1OxF4LrlBUWN')">10화, 새로운 세계</div>
+    <div class="episode" onclick="playDrive('10VTde74yIMklknzkJPlMOncf_iYUCPs5')">11화, 화산의 돌</div>
+    <div class="episode" onclick="playDrive('111J6DJgle4s6im0u8GncRHUooDHpqZ5u')">12화, 숲의 양옥집</div>
+    <div class="episode" onclick="playDrive('117rviyrunwRymCwBISi6d3BFxl4s8Vv_')">13화, 반란</div>
+    <div class="episode" onclick="playDrive('11LuPDFO-ogm3bAa20S30-1Qlqnf3zKcR')">14화, 얼어버린 세계</div>
+    <div class="episode" onclick="playDrive('11OGmFvzePN98wpiciEzUoiQRoLFgilE7')">15화, 왕의 귀환</div>
+    <div class="episode" onclick="playDrive('11PX2UR_EhGzPTyw1_Yrv3QzOUoct99HI')">16화, 영원한 아름다움</div>
+    <div class="episode" onclick="playDrive('11blSyat5XpGXzm-NzSexye5Y40I4mVt-')">17화, 조사</div>
+    <div class="episode" onclick="playDrive('11g7TJFuuO4UqaZE0N31kggYbeviYfevh')">18화, 속죄</div>
+  `;
+}
+
+// 📺 작품 6 에피소드
+function showEpisodes6() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 타몬 군 지금 어느 쪽!?</h3>
+
+    <div class="episode" onclick="playDrive('1B4xyTFnrueKf_qgxUluQ-uBcKcTf2_JY')">1화, 최애를 덕질하려면 돈이 필요해!</div>
+    <div class="episode" onclick="playDrive('1CwtMk5xEIWSkVTNg7ul57owq2JqdcOG0')">2화, 나, 좋아해?</div>
+    <div class="episode" onclick="playDrive('1v0eOwpEY7yJXxL3zxyUKXvCnBFsNOY97')">3화, 너, 위험한 팬이구나</div>
+    <div class="episode" onclick="playDrive('1P0_p6ZfUqZQbEGA5Ooa3-1uGUBsGZdUv')">4화, 당신은 사랑의 스나이퍼</div>
+    <div class="episode" onclick="playDrive('1kPRRyxjWZZYoboWmWUFdmcT1hdhAfdP2')">5화, RAIN</div>
+    <div class="episode" onclick="playDrive('1vz_3Wv-T04vOKliZy1Tc7uDS2E4RKq2-')">6화, 타몬 군 지금 어느 쪽!?</div>
+    <div class="episode" onclick="playDrive('1eWlSiuErrlEWB40bwN_BXXvNhhqLoWam')">7화, 덕후는 무서운 생물이야</div>
+    <div class="episode" onclick="playDrive('1dNktqah7pw2nRW_13aHpP3nk6SyH8wzI')">8화, F/ACE와 여름 여행</div>
+    <div class="episode" onclick="playDrive('1qTUYxIyKIGpRwWhOB67OpDp2uPkCNDWM')">9화, 이기는건 나야</div>
+    <div class="episode" onclick="playDrive('19QO0ZtIR-zFXOJmeQVaazF4aZ7Ph4_l7')">10화, 봄 웜톤</div>
+    <div class="episode" onclick="playDrive('1dOFn47I39jCxQ-ppthrCQiJ16z1wGJYZ')">11화, 여기에 있어도 되는 길까</div>
+    <div class="episode" onclick="playDrive('15cf-Ez5wcPaxxi2OTpk4o8PsccCPPzL7')">12화, FLY</div>
+    <div class="episode" onclick="playDrive('1VIlZovS91LW660ldTAq56e7aImUj2230')">13화, 저, 각오를 다지겠습니다</div>
+  `;
+}
+
+// 📺 작품 7 에피소드
+function showEpisodes7() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 아이엠스타! 4기</h3>
+
+    <div class="episode" onclick="playDrive('1CaBZzKRnBSrBxlrQDSLmyOAsV120thsM')">1화</div>
+    <div class="episode" onclick="playDrive('19rTVXbMjdrKKVYkXIqTtAVXmS35-64mm')">2화</div>
+    <div class="episode" onclick="playDrive('1GRLrVDtmDlxBnyMuIZD3ZEEyDJSxbHGy')">3화</div>
+    <div class="episode" onclick="playDrive('1o_1cOhoCLXQAWIrM75aAw4IgB2DEGSe2')">4화</div>
+    <div class="episode" onclick="playDrive('13p34dSua3hmpkGF1eV7P5_qOyxuWowdZ')">5화</div>
+    <div class="episode" onclick="playDrive('1wGfLErnCBfgxkkMVpB8xk0kdk7ec17f_')">6화</div>
+    <div class="episode" onclick="playDrive('1Yb4ygHnWPOUzmrCJ3hSYxfysd03MnS4a')">7화</div>
+    <div class="episode" onclick="playDrive('1MbUt2qsl_roKOFeeqF1dk0zvG9mvqxXC')">8화</div>
+    <div class="episode" onclick="playDrive('1zUd84lvB82jaxQQ2GdEHtSxqp59knbQP')">9화</div>
+    <div class="episode" onclick="playDrive('1LHtOJuv0HDmyA6TlFxdznrAZRYYlMVCF')">10화</div>
+    <div class="episode" onclick="playDrive('1_wNdMvzjD1pLqMuOjYXkwIXiRD5g757G')">11화</div>
+    <div class="episode" onclick="playDrive('1mqiuX32pMCxgwjQkygxJayFp4HhIjcrc')">12화</div>
+    <div class="episode" onclick="playDrive('1M3Zg_sO-KhqScd9zSFCAS2Hu2uPQeJwO')">13화</div>
+    <div class="episode" onclick="playDrive('1fBylZrsyaPtOSftash7gkpdJn0GecLHO')">14화</div>
+    <div class="episode" onclick="playDrive('1yDmtT3yL4k7UyhxtrQnSQQu5_ZYDbw8Z')">15화</div>
+    <div class="episode" onclick="playDrive('1zX63ZUlUq1AV1XC5Trra3EBBu7EmiK04')">16화</div>
+    <div class="episode" onclick="playDrive('1E0PrexSKZHxKsJkty1r59uwNg3JFhjIR')">17화</div>
+    <div class="episode" onclick="playDrive('128gpyMrIXwYw7ggqoNwS2r43tc0eOu5l')">18화</div>
+    <div class="episode" onclick="playDrive('11YM1_HydGy3AQNdsnL3Py3ENw0_8IE9i')">19화</div>
+    <div class="episode" onclick="playDrive('1HULXbydkPaGrrER6u1vatl4TvMPBnCZM')">20화</div>
+    <div class="episode" onclick="playDrive('1RG2NbN0BqXvTE0UteCjjMczwc6GqsW_E')">21화</div>
+    <div class="episode" onclick="playDrive('1NRPX31zvzhMzjqwP-wZU8Ifn2NFiXp72')">22화</div>
+    <div class="episode" onclick="playDrive('16mJ6SBUH6lEtgLM3aVxQG3N_6P2CxJpc')">23화</div>
+    <div class="episode" onclick="playDrive('1KBvWjaXJ08tDbbiQGqNDmOnYoyw1ywBx')">24화</div>
+    <div class="episode" onclick="playDrive('1sn3Q6kOC2GP7-1QU5V1H46uQEw3fDjT4')">25화</div>
+  `;
+}
+
+// 📺 작품 8 에피소드
+function showEpisodes8() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 극장판 아이엠스타! 꿈의 오디션!</h3>
+
+    <div class="episode" onclick="playDrive('1rkM-pROQkCrKelvJ04X9YO7PCbyTBfim')">극장판 아이엠스타! 꿈의 오디션!</div>
+  `;
+}
+
+// 📺 작품 9 에피소드
+function showEpisodes9() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 아이엠스타! 10주년 극장판 미래로의 스타웨이</h3>
+
+    <div class="episode" onclick="playDrive('1NfhJEy3hDV_HiNXN-HdkyQ2AunRff3b7')">극장판 아이엠스타! 10주년 극장판 미래로의 스타웨이</div>
+  `;
+}
+
+// 📺 작품 10 에피소드
+function showEpisodes10() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 스즈메의 문단속</h3>
+
+    <div class="episode" onclick="playDrive('1o2OS28tkukQFqBV0M-RXd2SrHdldgAgR')">스즈메의 문단속 (한글 자막)</div>
+    <div class="episode" onclick="playDrive('1hfTGxm6PFzZPu1uKkx58rDsHjdJPRu6R')">스즈메의 문단속</div>
+  `;
+}
+
+// 📺 작품 11 에피소드
+function showEpisodes11() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 아이엠스타! 2기</h3>
+
+    <div class="episode" onclick="playDrive('13E-TZYehVTddBj2cetWVf5yDNi6tW-wR')">1화</div>
+    <div class="episode" onclick="playDrive('1-fw54jD2BYJo1FHkJIqhM4IiLqemr60c')">2화</div>
+    <div class="episode" onclick="playDrive('1edWD3qCIGBJDx-Xm8TjhgVSLuwfQUOYg')">3화</div>
+    <div class="episode" onclick="playDrive('1KkO0UUc6YhLM7XEqj-HeB7B9dWd7Avn6')">4화</div>
+    <div class="episode" onclick="playDrive('16alWQM7bfe_pst-6yuUBVjukxca4SV9R')">5화</div>
+    <div class="episode" onclick="playDrive('1mWSNlD-wrcI8QtlwWWeIsD-gQmSf3Ga1')">6화</div>
+    <div class="episode" onclick="playDrive('1_o2N37p-llpT6Ayn3mnGi_8a1ufHEyHv')">7화</div>
+    <div class="episode" onclick="playDrive('1jf27JYa9S--zJjfUng6vHqpR_n8G54hT')">8화</div>
+    <div class="episode" onclick="playDrive('1c6YFsDfm_jQ-VbBqAMkT0ry_0TeozQeg')">9화</div>
+    <div class="episode" onclick="playDrive('1PtdOHoYob8Fa11SaLCP6-_XqGilk4MUK')">10화</div>
+    <div class="episode" onclick="playDrive('1uQt9VcJ5fVK7XibqfH3vzTw7NuPZPuuc')">11화</div>
+    <div class="episode" onclick="playDrive('1zSIm6OrK-Y-Hej-iIWyzl85iXdRweaY4')">12화</div>
+    <div class="episode" onclick="playDrive('1I1cZ93U4GDAEZIOTzh6CemBS2Psc8pVb')">13화</div>
+    <div class="episode" onclick="playDrive('1RhvqavpNgtgZtQbNFzIG_FXRKvj17O_o')">14화</div>
+    <div class="episode" onclick="playDrive('1PekSS5F1f1BL1nbJSSeWfMvOx63pAvCr')">15화</div>
+    <div class="episode" onclick="playDrive('1PcKDZ8uqXu8EpXSnWZgbKsowX0evznkn')">16화</div>
+    <div class="episode" onclick="playDrive('1RrjNdmZwhAdUOqoL4VXlLhJw46mH_CNN')">17화</div>
+    <div class="episode" onclick="playDrive('1wb1LO3ORzPq4rSQoSclmJcoKTs91qwxn')">18화</div>
+    <div class="episode" onclick="playDrive('1JHZMFEg61NLRVDw4L0oti8oNadV-Cyb5')">19화</div>
+    <div class="episode" onclick="playDrive('1p5sNan14SkhvQyyQHmRGkrrZ7O7351q_')">20화</div>
+    <div class="episode" onclick="playDrive('1fdEo5yJjqJjUyWn4U2H3iMr7taVcWQTA')">21화</div>
+    <div class="episode" onclick="playDrive('1BrPxS7nUgz2xwCxiR0uxF0c8eBqo64bB')">22화</div>
+    <div class="episode" onclick="playDrive('1g79KPrqEO_nabAinXHSK2O8oGTdpzaL5')">23화</div>
+    <div class="episode" onclick="playDrive('1UTabn6y6x0EoIhalVBuvXP63KaOSoMVL')">24화</div>
+    <div class="episode" onclick="playDrive('1DSMUgymFmnL6Pym9-tBStgiBSIbQUUo3')">25화</div>
+    <div class="episode" onclick="playDrive('1vpnKdCtqJ6A5KNtmh6cN5qDWDN-lciuY')">26화</div>
+    <div class="episode" onclick="playDrive('188mGOeFqY5cQmE4ximNENM9s9U4QQGrs')">27화</div>
+    <div class="episode" onclick="playDrive('1sLkGCTqJN_DzJsQp3ohrUDhY5tgqZvEE')">28화</div>
+    <div class="episode" onclick="playDrive('1vG5W797HaaBPj8JDvE33oVv3gUIFS2Nc')">29화</div>
+    <div class="episode" onclick="playDrive('1UeKNVYIwCmwNtiLI8RtAfaO2AtPkmPL8')">30화</div>
+    <div class="episode" onclick="playDrive('1Q9MWxvontrvH9NMTnAk4bLuyetkVvaMz')">31화</div>
+    <div class="episode" onclick="playDrive('1FYOln78IBGKlmxGwLm7m181GmeSgNXGw')">32화</div>
+    <div class="episode" onclick="playDrive('1sd-GWS4398nAbF9gO5MGi7za9D0c6kVF')">33화</div>
+    <div class="episode" onclick="playDrive('1edP6w9Uk30Rocfi0z5vG2cgmI76ygmMI')">34화</div>
+    <div class="episode" onclick="playDrive('1NSksi_vMVxfA3S9ndn95Qhgvkpzj_nvq')">35화</div>
+    <div class="episode" onclick="playDrive('1npRsVm5qQWIkqsn0eYX0kSRZdjgZ-Ij6')">36화</div>
+    <div class="episode" onclick="playDrive('1Zcsw-EHAdUdAt4glXOlVvhrs06qSFbcW')">37화</div>
+    <div class="episode" onclick="playDrive('1JAa89LyGVNDPYHVTfcEBPpxZhcspJ-0q')">38화</div>
+    <div class="episode" onclick="playDrive('1iIRxPDR7pox0uRQa3Ho55-nULqgnkIa_')">39화</div>
+    <div class="episode" onclick="playDrive('151fpVCB2PXA_B1lsoCvACiMjMdIPdJMl')">40화</div>
+    <div class="episode" onclick="playDrive('15kaMc2esolhwBP2V4OkGofSQkSWO-H9o')">41화</div>
+    <div class="episode" onclick="playDrive('1aDkyko5Sr0RWpF5uxNVgDjjX7DsVNrAC')">42화</div>
+    <div class="episode" onclick="playDrive('1FwAYf1rbd1wCTYs1EmAtBZ6hG4Pdr7Of')">43화</div>
+    <div class="episode" onclick="playDrive('1_fayWQ3al65Cy2KuesIE-BiaDcLLqJUH')">44화</div>
+    <div class="episode" onclick="playDrive('1bmlZJQLRwLdTLOudF1on6eX9tGOfW0YS')">45화</div>
+    <div class="episode" onclick="playDrive('1ngv-_Ub4iRHVxLKUaMw-SbUTtRvVTlfB')">46화</div>
+    <div class="episode" onclick="playDrive('1WArUEfQxSY4Q8jFGusPke8AFb1kBTl8w')">47화</div>
+    <div class="episode" onclick="playDrive('1vijBmFxSj40tvACCqhjIXQ7Wva4-StgF')">48화</div>
+    <div class="episode" onclick="playDrive('12OekOUMyUdXCyOdF2tCpCFO0EW9p8PEo')">49화</div>
+    <div class="episode" onclick="playDrive('1IC8siDMr4NSTzkI5COcyaLWsvcoVdWuU')">50화</div>
+    <div class="episode" onclick="playDrive('12IzCMLp8wyq6e-VpfjVZCG-FK-NSgmZd')">51화</div>
+  `;
+}
+
+// 📺 작품 12 에피소드
+function showEpisodes12() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 미라큘러스: 레이디버그와 블랙캣 시즌6</h3>
+
+    <div class="episode" onclick="playDrive('1TUw93kvSp3DykTsyLLAykXOhE7Ig7Cza')">1화, '좋아요'의 노예</div>
+    <div class="episode" onclick="playDrive('1s5uC_sGFfWvP9WTpDrEevCMJn3xfDuee')">2화, 일러스트레이터 그림 속 악몽</div>
+    <div class="episode" onclick="playDrive('1-t0Kw8188LR2ohDDqNoiXWeIN18nQHkk')">3화, 완벽의 함정</div>
+    <div class="episode" onclick="playDrive('1yaFT5ipB_gOW3FYcUH2rtGnLATcj49Qm')">4화, 슈퍼 아빠, 대디캅</div>
+    <div class="episode" onclick="playDrive('1ZgHoN8yAZTkPoDKfUeyYMKc4lc8ZiAqV')">5화, 또 하나의 가족</div>
+    <div class="episode" onclick="playDrive('12WGUY7R0IDkY-KTt8Ce8cvTLhD0n8Ws_')">6화, 잠자는 물속의 공주, 세이렌</div>
+    <div class="episode" onclick="playDrive('1Bt8KKPk6Z-kPvQPoEkeYR4UdTrz1Vz-N')">7화, 아빠를 닮은 나</div>
+    <div class="episode" onclick="playDrive('1f4OexKmZ-7T7EW0HLN0_oud9xXYz_ceP')">8화, 미스터 아그레스트</div>
+    <div class="episode" onclick="playDrive('1afAW5Cfw-EIjy7CzfFL68W5lztWoYvWN')">9화, 어둠의 성, 다크 캐슬</div>
+    <div class="episode" onclick="playDrive('1KWThPHbkZz9cHnyK-R954Q-egz22RZ-P')">10화, 비밀 파괴자 레벨레이터</div>
+    <div class="episode" onclick="playDrive('1Sv4yko2J2lfMPSCSTWHb5LDcRVL02PE7')">11화, 마음을 조종하는자, 마인드 드라이버</div>
+    <div class="episode" onclick="playDrive('1neuyNpYDAACjR6IJlj2mzaZyAQyhTKkv')">12화, 야크시 고젠, 어머니의 이름으로</div>
+    <div class="episode" onclick="playDrive('19UARiesU-xM7BY8tQxkdZCBbcOZ_EUoB')">13화, 바른길로 인도하는 자, 룰러</div>
+  `;
+}
+
+// 📺 작품 13 에피소드
+function showEpisodes13() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 미라큘러스: 레이디버그와 블랙캣 시즌2</h3>
+
+    <div class="episode" onclick="playDrive('1dOZMyKTeMa-5No3Zhx5mIAcWgDBBp6gB')">1화, 의문의 수집가</div>
+    <div class="episode" onclick="playDrive('1dQ0mH4Y88LN9V7sQItHl8FOXjctnSc6H')">2화, 시청률의 여왕</div>
+    <div class="episode" onclick="playDrive('1dU1rMfnhc2m4QCV4XgIY4Uv6usSGnzzj')">3화, 사랑의 아이스크림</div>
+    <div class="episode" onclick="playDrive('1dYCtrA5Pb--a1xzxfELSzY_rK3scTfEH')">4화, 곰인형의 분노</div>
+    <div class="episode" onclick="playDrive('1ddbNTPMX9NnrKQbWVzpCDLxAG3V7tupQ')">5화, 트러블메이커</div>
+    <div class="episode" onclick="playDrive('1dk1aM0AMaHy3DRXSSL8rkRMLqYSemxml')">6화, 아기 거인</div>
+    <div class="episode" onclick="playDrive('1dzWJewBBapkTk3-ZsgsY-jeaGF7zIGVT')">7화, 펜싱의 고수</div>
+    <div class="episode" onclick="playDrive('1e3PlN1xj3vnkRnF8WFPDGBIcrz7PKz8W')">8화, 할머니와 깜짝파티</div>
+    <div class="episode" onclick="playDrive('1e3xoRVmlEiyXKWQC43Xh28kGmJDcfVmX')">9화, 리듬에 맞춰!</div>
+    <div class="episode" onclick="playDrive('1e4t5q89u168nt5dnuIcebE3F9oJPhfiy')">10화, 고릴라가 된 경호원</div>
+    <div class="episode" onclick="playDrive('1eBorGDLNnK5lwa_prApsWt1S2RFT1eNO')">11화, 로봇의 꿈</div>
+    <div class="episode" onclick="playDrive('1eCGS0FVPkUEG26G3-359kKCkjCEddlmz')">12화, 꼬마 악동, 사포티</div>
+    <div class="episode" onclick="playDrive('1eCmQJrdGVtXXDeH2_RlvdCNx6iVHlfU6')">13화, 새로운 영웅</div>
+    <div class="episode" onclick="playDrive('1eHg1oaEDmPNtXDVrcVGRyPTBqv47ZBfY')">14화, 물의 마녀, 사이렌</div>
+    <div class="episode" onclick="playDrive('1eOJ1eelfegPjkhjAUXhov_kKKJvsk1Tq')">15화, 사랑의 전도사, 좀비주</div>
+    <div class="episode" onclick="playDrive('1eR9JvMX_ex7C5weKnC--FPKLbZL9ezZU')">16화, 자유로운 영혼</div>
+    <div class="episode" onclick="playDrive('1eVzGnRdU_ZI1pcx4BkFLhKASBK2SdVII')">17화, 얼어붙은 도시</div>
+    <div class="episode" onclick="playDrive('1e_M__s07Og-YbyagEuDPbDX1xOBseJ_n')">18화, 패션의 여왕</div>
+    <div class="episode" onclick="playDrive('1eeIChS3IcOSPdfqpz5F1f-449U7kQk-r')">19화, 뉴욕 or 파리</div>
+    <div class="episode" onclick="playDrive('1elS-euMvzbqwivmIBFF6mVdHOTXqWjJt')">20화, 반전의 악당, 리버서</div>
+    <div class="episode" onclick="playDrive('1eu4FrR7j0bijbPnGfMfiBcdreLocE-GU')">21화, 거미 괴물, 아난시</div>
+    <div class="episode" onclick="playDrive('1euwh4Ep_MW3dJ5U3jUYnG35m3u7Jf9fm')">22화, 독재자</div>
+    <div class="episode" onclick="playDrive('1exVMtvAJ2hd1v6CdwT4Emj8N1CZ3Pc6Q')">23화, 악몽을 부르는 샌드보이</div>
+    <div class="episode" onclick="playDrive('1f5AOEFebcSyuMKAuymXl9NliU_yA7_p_')">24화, 영웅의 날 1</div>
+    <div class="episode" onclick="playDrive('1f6VinuLZNXLMHm4njEzTE4KTi3IRbC7u')">25화, 영웅의 날 2</div>
+    <div class="episode" onclick="playDrive('1f9k-TfhnDJJ2rDn4CknrxGtckv8qQjqH')">26화, 산타의 복수</div>
+  `;
+}
+
+// 📺 작품 14 에피소드
+function showEpisodes14() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 아이엠스타! 3기</h3>
+
+    <div class="episode" onclick="playDrive('1dvE6m3f6GVcz96ugbyl8zC1OwWB9u53t')">1화</div>
+    <div class="episode" onclick="playDrive('1lZBMr0uRV2NCpPAI1EYfXLj6pnaNRTQZ')">2화</div>
+    <div class="episode" onclick="playDrive('1809zvvK0-lHITONv7Fw05LckKWNPjDCz')">3화</div>
+    <div class="episode" onclick="playDrive('1T52jbROfjwlMsPwE7WJ0BJXJQY6wwnoj')">4화</div>
+    <div class="episode" onclick="playDrive('1tsHiRQGTq1fRk7-yHztOZDPiy5fU-vXU')">5화</div>
+    <div class="episode" onclick="playDrive('15EMM7kxP5UdYZkgwZKTeXDAvsymkVNr4')">6화</div>
+    <div class="episode" onclick="playDrive('1bVLmB39LFP3BsinhWEAa01C3llLbhm9I')">7화</div>
+    <div class="episode" onclick="playDrive('1CpewYvYhKvmidwIzvhu67aXHudSanLZI')">8화</div>
+    <div class="episode" onclick="playDrive('1w6cumF-nsk1MxZhbJIDzJhPxzzpEckh1')">9화</div>
+    <div class="episode" onclick="playDrive('1yiOwsLZYNZ2wF4m7HAmiOMLyF32FMOwq')">10화</div>
+    <div class="episode" onclick="playDrive('1BIO-2WY90Ob19IudWabGV57Cg5BifYpI')">11화</div>
+    <div class="episode" onclick="playDrive('1NutsT_E4sy6qEd26N57AjCmXOonUZ9nq')">12화</div>
+    <div class="episode" onclick="playDrive('1fIJ9zjgtnfVMP8wM64JSrw1yauWSs_5D')">13화</div>
+    <div class="episode" onclick="playDrive('10EyC_XN7y-Oud5J3bHyq_PPeEvVDba0i')">14화</div>
+    <div class="episode" onclick="playDrive('1eMWPTGe2GIHXAMB_uRVfBtpGGe_MgAii')">15화</div>
+    <div class="episode" onclick="playDrive('18Qk1lUfm_L4lZM70wuR-bX9UPc0TvFPC')">16화</div>
+    <div class="episode" onclick="playDrive('1GixZOv08wzeiYse5Vyrn20w84YuDAMzl')">17화</div>
+    <div class="episode" onclick="playDrive('1C5I0ytQpXdIIovkV7h0uhalNZKgEqcWg')">18화</div>
+    <div class="episode" onclick="playDrive('1sETQZd79mLgLCB54Y4alpuowO7_EsSD-')">19화</div>
+    <div class="episode" onclick="playDrive('1QDj7SNv1EPfBhn-G3PcWXepWsNw7DODL')">20화</div>
+    <div class="episode" onclick="playDrive('1ouckCknSW807gaHNTIGhSgv1FxNS1F3D')">21화</div>
+    <div class="episode" onclick="playDrive('1-RhkBAZuZh74T1w6Gf-k-qMPcwM0Ffjs')">22화</div>
+    <div class="episode" onclick="playDrive('1Kgvg27blp7AAqr3ogbHfcwhpEnUbwSlf')">23화</div>
+    <div class="episode" onclick="playDrive('1ca3hZNhDJMu22iB98Yz-KJFQS3BfNCXX')">24화</div>
+    <div class="episode" onclick="playDrive('1pOLDv20f-0FD7M-gbAjHX0J0WJWRWPR9')">25화</div>
+    <div class="episode" onclick="playDrive('1nkBsqcx_8usr-IZc-Lx2YASy019NVOb6')">26화</div>
+    <div class="episode" onclick="playDrive('1V7R1yof3SIgAMFc2-i3vhzPgTaQIkX_3')">27화</div>
+    <div class="episode" onclick="playDrive('1_jy-HQ40cj7Z1hP0I6UNG4JyrNArCrFH')">28화</div>
+    <div class="episode" onclick="playDrive('1R94mZYkvLycZd-H7YMQrw-eqvTIgliC4')">29화</div>
+    <div class="episode" onclick="playDrive('1ifpWOzXnwDx9W9Z3EcohrXVyWi8Nmwaw')">30화</div>
+    <div class="episode" onclick="playDrive('1KOG8L6R2FSrSg-biZcU0NsphCRjiK6hK')">31화</div>
+    <div class="episode" onclick="playDrive('1mdjCrjx17vu7RjaJpVCI_1twgYb3Ta4o')">32화</div>
+    <div class="episode" onclick="playDrive('1aZwSv7UtSEmWTMu9E6vxc-uDxvZJ50E7')">33화</div>
+    <div class="episode" onclick="playDrive('19hhessyRZrPOuhltzypWxJsKKRVazGKR')">34화</div>
+    <div class="episode" onclick="playDrive('1eZLhUlHnCrDWjI_NG1GClMjNQgbewa_1')">35화</div>
+    <div class="episode" onclick="playDrive('1Pp_zwmvGR4DIrR_9BJga_pwsZEi4cGeS')">36화</div>
+    <div class="episode" onclick="playDrive('1KTaMiiG44LqseASsXm8u-dfX0xx7ZpD1')">37화</div>
+    <div class="episode" onclick="playDrive('1bzXMbdeXFJbRi5rlNBl_EVGgIaKCG_kS')">38화</div>
+    <div class="episode" onclick="playDrive('1VYffV_ecUnm-dmQ8K2I-VxjxbIVZ9VSn')">39화</div>
+    <div class="episode" onclick="playDrive('1XYC53LgGGlMXR9M7TcO_GYKFdkbSXKsQ')">40화</div>
+    <div class="episode" onclick="playDrive('1OXfeVG8xHJCaottjEpTf_iZ_MFJZCcc7')">41화</div>
+    <div class="episode" onclick="playDrive('1v_jsMaXQn7UJp2Jgbwc6XEM1JuuuH7W0')">42화</div>
+    <div class="episode" onclick="playDrive('1fZox5Mwv6eJtJ5Ztkp76SEPA77WcQwH4')">43화</div>
+    <div class="episode" onclick="playDrive('1yu0CiVrA1br-b8BivLsfppUTZ9kMBEvg')">45화</div>
+    <div class="episode" onclick="playDrive('1emzFom5Hhg5n0dnkv8C-702zxLvERZfR')">46화</div>
+    <div class="episode" onclick="playDrive('18JI7yYbuLOTao9khYfEgn9RNONhaZx-1')">47화</div>
+    <div class="episode" onclick="playDrive('19p2Dq7iiRSr6114BGmevcMWiVBoJxFO9')">48화</div>
+    <div class="episode" onclick="playDrive('1FFqJ_GK4wNYj07UdJ1LjHqV7uEkccoqp')">49화</div>
+    <div class="episode" onclick="playDrive('13VfM1xeGAJ-kB-BnWQfDD4iQn4J8cALp')">50화</div>
+    <div class="episode" onclick="playDrive('1_qWWCnDjotj7syW2l2qPnkoPUvKB3opz')">51화</div>
+  `;
+}
+
+// 📺 작품 15 에피소드
+function showEpisodes15() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 미라큘러스: 레이디버그와 블랙캣 시즌3</h3>
+
+    <div class="episode" onclick="playDrive('1gBWq1wNGMUu8hOJ5ZQ0QxovaOaWkTSr-')">1화, 카멜레온</div>
+    <div class="episode" onclick="playDrive('1gC8IDfQDSxLehfy7xeceRr670MCeb5m2')">2화, 애니메이션 감독의 분노</div>
+    <div class="episode" onclick="playDrive('1gFTrAGKH4NDAOqhz8jeWLjr_YBp1OTcu')">3화, 전통을 지켜라!</div>
+    <div class="episode" onclick="playDrive('1gH-D_HrDFrrAfxUcxLAYJtO4DDdox6E_')">4화, 시간을 되돌리는 자, 백워더</div>
+    <div class="episode" onclick="playDrive('1gJ6s-5lpbF5rvQkjVKWYEkYAc3aUNsxz')">5화, 돌아온 리플렉타</div>
+    <div class="episode" onclick="playDrive('1gLODea0MErUuJ2Qe2ziHZ0k2EgWJier2')">6화, 늑대 아빠</div>
+    <div class="episode" onclick="playDrive('1gML_nHhnqh6GXf5rRpyxoEJtjBZDEjsn')">7화, 빼앗긴 목소리</div>
+    <div class="episode" onclick="playDrive('1gNpXUZHnD7cAjWOhNh0Y9r9FJudt2LBq')">8화, 뿔 난 도꺠비</div>
+    <div class="episode" onclick="playDrive('1gYF3BKZtCIKl7-ezqxtF81sSE-UzORT-')">9화, 초능력 도둑, 미라큘러</div>
+    <div class="episode" onclick="playDrive('1gikiyZs0VneIsdBcuU9HAtqp-WgY2Jyd')">10화, 사라진 기억</div>
+    <div class="episode" onclick="playDrive('1gjrI9rH_gIzuTYsOIr8Y-tFALfwJah9B')">11화, 뷴노의 연주자, 데스퍼라다</div>
+    <div class="episode" onclick="playDrive('1gqWQeCbFMhGEh0_kv8ejfD4d1q3m4V5e')">12화, 크리스마스터</div>
+    <div class="episode" onclick="playDrive('1gxEKfuMW4ubsmqZGElP98_ag5q4mLman')">13화, 우주 비행사의 꿈</div>
+    <div class="episode" onclick="playDrive('1h2zuneP4iZLAir0v3-m8MIhGdRm-bFDc')">14화, 진실 혹은 거짓</div>
+    <div class="episode" onclick="playDrive('1h37fEl8Yq0PpzQPXvfM2gIulGXaiT74C')">15화, 과거의 잘못</div>
+    <div class="episode" onclick="playDrive('1h3tqcqYqntxc3VLU6oNUUW5RfMlBQVPz')">16화, 게이머2.0</div>
+    <div class="episode" onclick="playDrive('1h5M5vfgKjRMgOmIY6aKDkGkexGc1NGOk')">17화, 분노의 폭풍 2</div>
+    <div class="episode" onclick="playDrive('1h7QBd1KfktD_pNlrLcl_XmgJvmo859lt')">18화, 우정의 시작</div>
+    <div class="episode" onclick="playDrive('1hHC-Ds6UTKTSyoerigJUCE0nGBHtTy2R')">19화, 미래에서 온 악당</div>
+    <div class="episode" onclick="playDrive('1hKtyC3H4ZunzUjqBwFnKpQ1cwgYmWrhw')">20화, 남자들만의 파티</div>
+    <div class="episode" onclick="playDrive('1hR1rHlKtQ3GB6a3e9WmNr-ytpJic_F1y')">21화, 인형술사 마농 2</div>
+    <div class="episode" onclick="playDrive('1hS0CiOzodjSwJDrhKU_OvpbaAL2jTI9g')">22화, 화이트캣</div>
+    <div class="episode" onclick="playDrive('1hT5oUqkEUUu5K8JVhgRU8-Q3fcN6wkWK')">23화, 악동 사촌, 필릭스</div>
+    <div class="episode" onclick="playDrive('1hWIx-HlXwqTFcHE5r-0S9arvlvGjp3_d')">24화, 억울한 누명</div>
+    <div class="episode" onclick="playDrive('1hZCRsmOStpSuwSzVB6pUN15LzYtdNb8n')">25화, 사랑을 잃다</div>
+    <div class="episode" onclick="playDrive('1ha2A5AcmtFttLM_LngV0_ONiYtwVHx2n')">26화, 진정한 선물</div>
+  `;
+}
+
+// 📺 작품 16 에피소드
+function showEpisodes16() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 미라큘러스: 레이디버그와 블랙캣 시즌4</h3>
+
+    <div class="episode" onclick="playDrive('1jR3O6lKl9vvTuznyw7nqmD_0n6MyrxpU')">1화, 진실과 거짓: 트루스</div>
+    <div class="episode" onclick="playDrive('1manl3YGSaYLpcLklf40t_SLLgAvb99Xn')">2화, 진실과 거짓: 라이즈</div>
+    <div class="episode" onclick="playDrive('17hyYoU3nZl_fY9NjI9QC3dDDRF0QNYj9')">3화, 비밀 결사단</div>
+    <div class="episode" onclick="playDrive('184dJxMag1yexeOo-7ymO_jAI3Cbi1rHq')">4화, 미스터 피전 72호</div>
+    <div class="episode" onclick="playDrive('180_bWqsn9aII8VWy0MlGOztnsDYJJVrg')">5화, 감정의 조율사, 사이코미디언</div>
+    <div class="episode" onclick="playDrive('1Bp5yQ_JoDkN16BNX8Sv2JdyEY17eE0F4')">6화, 분노의 화신, 퓨리어스 푸</div>
+    <div class="episode" onclick="playDrive('1Kb7FU2t5d34GgFqeDlBbp4pbAhjQlM85')">7화, 밟거나 밟히거나</div>
+    <div class="episode" onclick="playDrive('1M_5hI1Ii7nrgI0jRi1PoERqa1y7gk_Pj')">8화, 진정한 스타, 퀸 바나나</div>
+    <div class="episode" onclick="playDrive('1Q0i3-vudo_7MdMdM_0g0K82HQhUZ6ItX')">9화, 가브리엘 아그레스트</div>
+    <div class="episode" onclick="playDrive('1Sfe6KqbiqB46K9710gg7LZAUq6dSo92H')">10화, 미니 독재자들의 습격</div>
+    <div class="episode" onclick="playDrive('1YJT_FZ0bNtx_74fF6mQRtzduRL4NhAm5')">11화, 죄책감의 나락, 길트립</div>
+    <div class="episode" onclick="playDrive('1018dyRqDoPmPk4HR41TzyucNolY9tsDi')">12화, 애증의 듀엣, 크로코듀얼</div>
+    <div class="episode" onclick="playDrive('16GELz_DiDDk9VRrzO-2x4027PBZzWbKL')">13화, 비밀의 감시자, 옵티가미</div>
+    <div class="episode" onclick="playDrive('16HJVZJX07SgtxH8O7X7GwFGu78I7sWij')">14화, 상상 괴물이 된 버블러</div>
+    <div class="episode" onclick="playDrive('1DiqSGAikd0xnWDOgUdV3uhu2jWClu-Ap')">15화, 아름다운 고백</div>
+    <div class="episode" onclick="playDrive('1CGlSSfyWxf4MvJ2ynjXtGJ40dD0dQzDI')">16화, 바이러스 괴물, 핵산</div>
+    <div class="episode" onclick="playDrive('1VKyQeKveAN7HNKY3FB-nZCbiCJwSxvgi')">17화, 눈물의 로켓티어</div>
+    <div class="episode" onclick="playDrive('1VXYMwrwLdw4RShP_gEdQB2-npeyKjqhm')">18화, 꿈을 좇는 위시메이커</div>
+    <div class="episode" onclick="playDrive('1VUAfuXUje0xfuoXyt3D54p7R5KcqvRHl')">19화, 복잡한 건 싫어</div>
+    <div class="episode" onclick="playDrive('1VaqPJTlwMmZjYz8LrOo9XZZjnQ7tbKU6')">20화, 억울한 누명</div>
+    <div class="episode" onclick="playDrive('1Vds4qoWqiePcBap1mISGCFHaOWPs1hXn')">21화, 또 다른 티키</div>
+    <div class="episode" onclick="playDrive('1iG3n9RjBjuO4BzKIh9zqHA0fJyq1TGTa')">22화, 시간 조종자, 에페머럴</div>
+    <div class="episode" onclick="playDrive('1iIDSD8--99do_KSDKZm9hDu4to5q_x9W')">23화, 블랙캣이여, 안녕</div>
+    <div class="episode" onclick="playDrive('1iLHBPywud4vBHiSCmho1ID8igJKWqOBK')">24화, 반칙왕, 페널티</div>
+    <div class="episode" onclick="playDrive('1iMG_zzvYdfznadfc3arJRpmKp17-nYt_')">25화, 최후의 공격 1</div>
+    <div class="episode" onclick="playDrive('1iO9jylq-YrW91NpJ1BQnqeamAtH2E57D')">26화, 최후의 공격 2</div>
+  `;
+}
+
+// 📺 작품 17 에피소드
+function showEpisodes17() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 미라큘러스: 레이디버그와 블랙캣 시즌5</h3>
+
+    <div class="episode" onclick="playDrive('1WgJybnS3wUaTpyW1k8XRROzpRs_opE8B')">1화, 순간의 선택</div>
+    <div class="episode" onclick="playDrive('1VwSAoQ7-ecH7nEOAbaryQxYUKN8w1Xak')">2화, 다수의 적</div>
+    <div class="episode" onclick="playDrive('1PFfzjhjk9vQZZ5Z0Q8TCTncABe4bjW42')">3화, 숨겨 놓은 단서</div>
+    <div class="episode" onclick="playDrive('1dZqLsW5RXkLV9FzITFFtsy1z0OpRIws-')">4화, 환희의 덫</div>
+    <div class="episode" onclick="playDrive('1uVpaHsmFMXKahyGzFO-LXnxIDi8meG3k')">5화, 환각</div>
+    <div class="episode" onclick="playDrive('1o-bHRnyxtn2FJqa0burDyReayAhI-iGz')">6화, 숨길 수 없는 감정</div>
+    <div class="episode" onclick="playDrive('1I5rVRCE7rmD5qbW9PXyNoLls1oqZSfsN')">7화, 열정의 힘</div>
+    <div class="episode" onclick="playDrive('1tHLDXB4m1f1mVFjuMWJTMbrvlfPzenHJ')">8화, 기억과의 만남</div>
+    <div class="episode" onclick="playDrive('1p35JM_LWg1aTFHKJr6lFqulbzxuWytfz')">9화, 엇갈린 인연</div>
+    <div class="episode" onclick="playDrive('1TCCyF0OqEWSRPB0Ir4bIb7wzA858iE_B')">10화, 새로운 주인</div>
+    <div class="episode" onclick="playDrive('1cW-dPXDvT8IpUX80ATae-fXnVjSka1Wy')">11화, 완벽한 조합</div>
+    <div class="episode" onclick="playDrive('1NuUqPJh52omjnThWysym4cOrPk56dDqR')">12화, 완벽의 그늘</div>
+    <div class="episode" onclick="playDrive('1iPicZ7Ds_1Y3RBy3h2ZRAGfdd8fccB8d')">13화, 너의 빈자리</div>
+    <div class="episode" onclick="playDrive('1Gcwz16PkciTZ4g2tKk-sU7eY_dgcycnH')">14화, 과거가 남긴 상처</div>
+    <div class="episode" onclick="playDrive('1plEy0rATpw4hHe-C07LhuVNRZcV3iHxP')">15화, 직감의 힘</div>
+    <div class="episode" onclick="playDrive('1eSG0BBmo1Ob-80g2NaLf-QEzHeujOWzO')">16화, 감정이 말하는 소리</div>
+    <div class="episode" onclick="playDrive('18ZXEHM2yY-wko-jMxrBFCTju76zWEXlz')">17화, 동경의 대상</div>
+    <div class="episode" onclick="playDrive('142Xa5b0V6c0trx00DeqYBENV4G-GkMmB')">18화, 현실이 된 분노</div>
+    <div class="episode" onclick="playDrive('10g4tVvinwPjo_gF3HgrcF_Olsrk1BPNq')">19화, 억압과 자유</div>
+    <div class="episode" onclick="playDrive('1Y9wrNjgTZR5K_XFQ8FCXJqplN6e73muG')">20화, 거짓된 폭로</div>
+    <div class="episode" onclick="playDrive('1Cq-eTIE-jsAnl2TV3Fnoooz3zLW7LYKF')">21화, 갈등의 연속</div>
+    <div class="episode" onclick="playDrive('1PXm2iit1vuWdYwAmLGph9ZWvfdQMEJJG')">22화, 은밀한 공모</div>
+    <div class="episode" onclick="playDrive('1jYmU2OvI0XP6p9I9CIkB2IwhuQsC0jgM')">23화, 혁명의 불꽃</div>
+    <div class="episode" onclick="playDrive('14qnhjIMbMA9ltb2B0K94jXmw413XYs6i')">24화, 현실이 된 악몽</div>
+    <div class="episode" onclick="playDrive('1dtOvR4RhYAO46kZ3Qmery76SNyHHLLGv')">25화, 최후의 날 1</div>
+    <div class="episode" onclick="playDrive('1MBuyj3j729CFWRINaa4nuBtnvlwqda8f')">26화, 최후의 날 2</div>
+    <div class="episode" onclick="playDrive('1AtDDwRl-hv9N-zQbXg_WEySUACyAUc7U')">27화, 내일을 위한 행동</div>
+  `;
+}
+
+// 📺 작품 18 에피소드
+function showEpisodes18() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 아이엠스타! 뮤직어워드</h3>
+
+    <div class="episode" onclick="playDrive('1LLGYwzvx4n7JXjudzY433MU8kqy0Lb4e')">아이엠스타! 뮤직어워드</div>
+  `;
+}
+
+// 📺 작품 19 에피소드
+function showEpisodes19() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 너의 이름은.</h3>
+
+    <div class="episode" onclick="playDrive('1mKdS3pLiOCFGI07J6aOkAyJT7PgrDvTa')">너의 이름은. (한글 자막)</div>
+    <div class="episode" onclick="playDrive('1qbiZrQerzCS6JywZpvW5qfohJGdRdw5Q')">너의 이름은.</div>
+  `;
+}
+
+// 📺 개발자 전용
+function showEpisodes20() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 김먼지 다시보기 1</h3>
+
+    <div class="episode" onclick="playDrive('1R6znTQfIC2nYvhpRiK-Ns6RAsirRiS13')">2024. 12. 21. 사이노 코스프레</div>
+    <div class="episode" onclick="playDrive('1Jy1wfQww6RqUKNcpgaSokd7-BAJwTUlR')">2024. 6. 5. 김먼지 버츄얼 첫 방송</div>
+    <div class="episode" onclick="playDrive('1mPQahcWykPB18vB9Qw3VlqxT_d9sKC7n')">130만원을 써야 간신히 볼 수 있는 별빛포착</div>
+    <div class="episode" onclick="playDrive('1QxJP3_EiyR7wzqoJSmTnL2-LXJdkLqxr')">300여 종의 원신 굿즈를 오프라인에서 구매할 수 있다고</div>
+    <div class="episode" onclick="playDrive('18hbI5y8UXAZvOonAUt72XbzjCyQJm9y2')">20250830_172543 (녹화)</div>
+    <div class="episode" onclick="playDrive('1kxK4E39sosOmOjlZmWDaChoNMT3Zoeu5')">20251011_173821 (녹화)</div>
+    <div class="episode" onclick="playDrive('1OIC1lSfiPsFqrFKHY5DuO7hmsdgdI7ji')">결국 소를 버리고 키니치를 택한 남자</div>
+    <div class="episode" onclick="playDrive('1spkFvD7r3eA7BtS8QvjvjkdVzsSx7Wqw')">경기도 사람의 흔한 드라이빙</div>
+    <div class="episode" onclick="playDrive('1EZeMsqq1Kwuukwe8JnbJptSzws5S6cQI')">내가 원신을 사랑하는 이유</div>
+    <div class="episode" onclick="playDrive('1UqnMn9wR9gk21TWu2fMmrL8S6vJG5EbT')">너무 행복했던 원신 메가커피 오프라인 이벤트</div>
+    <div class="episode" onclick="playDrive('1cVIr9Oxp9r6s2rLUlycLZC75X_YIMvbj')">매우 주관적인 원신 남캐 이상형 월드컵</div>
+    <div class="episode" onclick="playDrive('1nlYZbeW5UvPExLQl8NPi9EeE0j4IABZs')">매우 평범한 고딩 원신 유튜버</div>
+    <div class="episode" onclick="playDrive('1Oyppn9gNFLAbkgIpTUXj9JyTbJUJ-nSt')">멤버십_김먼지 목소리 변천사</div>
+    <div class="episode" onclick="playDrive('1NmvkWEhpJ0AyzPqR7keURrBPtvHL2Rxk')">미코 코스프레 하고 술 마시면서 해달라는거 다 해주는 유튜버</div>
+    <div class="episode" onclick="playDrive('1QgP_N7r3U4gxKCcmFX1ew1BBlo9nO2TX')">방랑자 좋아하시는 분들은 꼭 알아야 하는 정보</div>
+    <div class="episode" onclick="playDrive('1wgopbHJJ0KgdBaml15Nwbk00Js_W1G9F')">방랑자 풀돌 좋긴 한데 약간 아쉬운듯</div>
+    <div class="episode" onclick="playDrive('1-ogo6dui-9-Fc7ufxS6OaenOT7iSB3Jq')">본인 계정 아니라고 막 뽑는 호요버스 크리에이터 (리딤코드)</div>
+    <div class="episode" onclick="playDrive('1C65IbX4eaW-txFx_TI1oQjSTL2kC9uXH')">사람 진짜 많았던 호요랜드 토요일 방문기 / 호요랜드 2024</div>
+    <div class="episode" onclick="playDrive('1WDWgHPdyLHAEgSFPD0z4JBi5-kpx_X7E')">사이노 뽑으세요</div>
+    <div class="episode" onclick="playDrive('1h_M-tCAxcG53mteAGeU3atnShpFzLHd3')">사이노 코스프레로 이별을 고하는 남성 버츄얼 스트리머</div>
+    <div class="episode" onclick="playDrive('1a2dDLH-u1OhpctqTgEUaxLiSaoTiKhXI')">소, 키니치, 사이노 다 제껍니다</div>
+    <div class="episode" onclick="playDrive('1Z-d1IUq6NTPBteoR_SCyX7S0lhv2Y2kx')">솔직히 이 조합 어케 참음ㅋㅋ [원신]</div>
+    <div class="episode" onclick="playDrive('1nkgAtf9VwCHhcc5BzwzpIyjadws-fBW1')">쇼타 좋아하는 남성 버츄얼 유튜버의 데뷔 방송</div>
+    <div class="episode" onclick="playDrive('19hz4c97Oh7e_R8n_ahJ-4TXPSstnJgNP')">수능 1달남은 고3들이 노는 영상</div>
+    <div class="episode" onclick="playDrive('1ZWk1iG_AiRCSMb26d10JGMSY0OBlX95Z')">술 마시고 죽을 예정</div>
+    <div class="episode" onclick="playDrive('17UHfA2JxxK4csIAblkwYzJB1CpJWgQgT')">아무도 안 쳐다보는 원신 공식 사이트 구경하기</div>
+    <div class="episode" onclick="playDrive('10Jw_lZGwm6FxUY_uFmA3YeJzs7M1YE1M')">아쥬는 딜이 안 나오는게 아쥬 정상입니다</div>
+    <div class="episode" onclick="playDrive('15dbflEQJ4UfpU4TIpnLQhjNCVzZLP3WO')">아직까지 친구들하고 숨바꼭질 안 하셨어요？ ⧸ 유롱항, 오르모스항구 편</div>
+    <div class="episode" onclick="playDrive('1KZC9YoFtm35Fy-TCG6nTrmP6GFcG_azj')">안녕 (녹화본)</div>
+    <div class="episode" onclick="playDrive('15zBvl771TEXkPzIxnuXdp3plZxPiiHQt')">여러분들이 궁금해 하시는 것만 모았습니다   Q&A</div>
+    <div class="episode" onclick="playDrive('1q2q4exgoI_cPUroLXQkqhehiIZtyoj0X')">오늘 저희 소 생일입니다 여러분</div>
+    <div class="episode" onclick="playDrive('1fSpPPrBDfSb25NKMeunNUBccwMRmxIcy')">오랜만에 원신 하는 고인물들</div>
+    <div class="episode" onclick="playDrive('1sozy_2DyHt7hABZR_1PZe7bqTxf4HaCZ')">우리 애가 머리는 좋은데 공부를 안 해</div>
+    <div class="episode" onclick="playDrive('1Xz0Xd29rFXmHJ9aqUrf2DpIPlWp18eob')">원신 모든 유저가 좋아할 수밖에 없는 장소</div>
+    <div class="episode" onclick="playDrive('10zNkAYq6eMi0qLHulgETtaZY3wDVDtRh')">원신 캐릭터들의 표정을 내 맘대로 바꿀 수 있다고？</div>
+    <div class="episode" onclick="playDrive('17MSSXVyRhvXmTOdYnVxyk3B60GTgmumH')">원신 팝업스토어 갔다가 지갑이 가벼워졌습니다 ㅎㄷㄷ</div>
+    <div class="episode" onclick="playDrive('1Fb0D-9dc5ykd5Hj3FEVHCwvG8Tmrvpd6')">원신을 플레이 하기만 하면 굿즈를 준다고？ ⧸ 호요버스 PC방</div>
+    <div class="episode" onclick="playDrive('1EsOihItTSWSY94KtFi9ueQqxJf2LhK7p')">이정도면 사실상 그냥 방랑자 카페 ⧸ 원신 Cafe in Seoul 방문기</div>
+    <div class="episode" onclick="playDrive('1Qdu0UGU9qj-4OpQcoNGMHDKxDuh1De_U')">이젠 이벤트 없어도 숨바꼭질 100% 즐길 수 있음 ⧸ 몬드성, 리월항 편</div>
+    <div class="episode" onclick="playDrive('1iZGcWRd0GCOCvkDQ-YoLP26CZrQsYS4u')">저 원래 이런 방송하는 사람 아닙니다</div>
+    <div class="episode" onclick="playDrive('1guelA9rbSR4-eV1A_5cNIGlBkOMtrrZJ')">점심먹으러 학교가는 고등학생</div>
+    <div class="episode" onclick="playDrive('1sZjhsxT3M1ERkAuhCo6qJzZxbgppD53S')">진짜로 이거 다 해당되면 찐 원신 고인물입니다</div>
+    <div class="episode" onclick="playDrive('1gTQJMMecz1VwllqZPPWXccBhAqsEYC38')">초등학교 6학년 부터 보는 김먼지 목소리 변천사</div>
+    <div class="episode" onclick="playDrive('1f-CrxPqLzYp8E-O5fOmdWR5UyWNOMoUp')">취한거 아님</div>
+    <div class="episode" onclick="playDrive('10ilArwviJNYD6zQ86gAMmLiFDEQ9ByTC')">코스프레하고 Q&A 답변 해주는 남자</div>
+    <div class="episode" onclick="playDrive('1QINxku0dFQhPm9nzSiwIEcSnlNIFHAE1')">키니치는 명함만 뽑아도 절대로 후회 안 함</div>
+    <div class="episode" onclick="playDrive('1f9j-C22wGDIYYiAJYbB5oOxzmW3qDzxt')">태어나서 처음 방문해본 서코</div>
+    <div class="episode" onclick="playDrive('11yr5qL0uQ2Vyhm4KIY1aEmAqLWYmV7Vw')">태풍부는날 학교에서 원신하는 고딩들</div>
+    <div class="episode" onclick="playDrive('1qs18FxdTnbFczC65lvXMn37hV_LseyCM')">하찮은 버츄얼 캐릭터로 데뷔 하는 남자</div>
+    <div class="episode" onclick="playDrive('1Hj_nyvEtFynucJvcqvt9T6eNawduNzpH')">학교 째고 부산 갔다 온 이야기</div>
+    <div class="episode" onclick="playDrive('1XxUeWoaLNatC0Xfsd_oScSXlSTREJx4z')">호두 테마로 변경 된 원신 카페 방문기 ⧸ 원신 Cafe in Seoul</div>
+    <div class="episode" onclick="playDrive('1Dtvh64vTvACF1S8j68JTah_AuDo8pRqr')">혼자 술 마시고 노래방 가서 찍어온 영상</div>
+    <div class="episode" onclick="playDrive('1lcITJ63uBtgphCsYjmI0z_lifu6vbN70')">희비가 엇갈리는 극과 극 키니치 가챠쇼</div>
+    <div class="episode" onclick="playDrive('1onObDfs7LrnczfnIC_mTpu5G6vkEV2ig')">매우매우 매우매우 잘 살고 있습니다</div>
+    <div class="episode" onclick="playDrive('1d0D9sEqjL35qQYa2LHmc0WKk_kGQX2Qx')">먼바 안녕히 주무세요 사랑해요</div>
+    <div class="episode" onclick="playDrive('1RsmyNc_WrNffFmYfue_taFL7iId-cUFG')">반바지 썰푸는 김먼지</div>
+    <div class="episode" onclick="playDrive('1MsF7ZZmbPSc-z9xq5lD-ypx9yacBOlvY')">숏방 먼지</div>
+    <div class="episode" onclick="playDrive('12fGRlDfEFAgD2L4eSB-lpnQhXWvfBjMn')">차 안에서 먹방하는 먼지</div>
+    <div class="episode" onclick="playDrive('1DNvBfGtPNoZxkEpMuSe0r-BLcO1bGUH6')">친구와 함께 킨 집가는 라이브</div>
+    <div class="episode" onclick="playDrive('1C4LrbFMTmip7O7QqxKiqjmXWq9mEnNLY')">친구와 마크하는 먼지</div>
+    <div class="episode" onclick="playDrive('1Kx_T_x_oSAWLLjWehpnGiz_dNTCqwjqg')">수능 보기 직전에 열심히 노는 고3 브이로그</div>
+    <div class="episode" onclick="playDrive('12k7_WqequWNgy2RZBuJxaom1G52dFM1h')">사랑합니다</div>
+  `;
+}
+
+// 📺 개발자 전용2
+function showEpisodes21() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 김먼지 다시보기 2</h3>
+
+    <div class="episode" onclick="playDrive('1XNcPj4nPRDiLI4ixKmrM1FGZJNwj1bcc')">2024. 8. 30. 몬드에서 나타까지 걷기</div>
+    <div class="episode" onclick="playDrive('1G8rdSHm0VtNcJAZFD4I4AEQQUlXHP4fF')">'소맘' 이었던 것</div>
+    <div class="episode" onclick="playDrive('1bj-XSsb0sBxCA6AP-39hF_ZRF4FdpFPr')">[원신] 1억 모라</div>
+    <div class="episode" onclick="playDrive('1kGJAuACnZ5Rx-t_DEqVvUczsJJOup3iq')">[원신] 5연속 노픽뚫 벤티</div>
+    <div class="episode" onclick="playDrive('1enYCsxQOspqBcXowQ5i62gQfzoNRxnep')">[원신] 소가 나오는 일일퀘스트</div>
+    <div class="episode" onclick="playDrive('1TJ2NdKxakjr588Gag9bjY4kmLHcEVz9W')">[원신] 아니 연비 개무서움</div>
+    <div class="episode" onclick="playDrive('1_6Wcbvd06vF5E1x0OG5khq5KxjwLj2ZO')">1000 레진 [원신]</div>
+    <div class="episode" onclick="playDrive('1uKd4E5ltqzZUr8dxzdMH4NjFpSuZMWJY')">가진 원석 전부를 걸고 하는 숨바꼭질 [원신]</div>
+    <div class="episode" onclick="playDrive('13gHOyafaUX5lNai_7KjDzLuAdcdskKiT')">개인정비시간에 하루종일 쇼핑만 하면서 살았음</div>
+    <div class="episode" onclick="playDrive('18_Z_v6v8f6fRi8HsM_J9TBNC9qpFzrum')">겁 없는 초보운전 19세의 강릉 여행기 【한국2】 </div>
+    <div class="episode" onclick="playDrive('1zSkm4FilLDPojaqf8EETkx-jJRRfr31g')">그냥 둘이 사긴다고 광고를 하고 다녀라 [원신]</div>
+    <div class="episode" onclick="playDrive('1uFhQ_c_wcPSm3WTD4TtvVhGTfGanBQq1')">급발진해서 플린스 풀돌까지 달리는 남자</div>
+    <div class="episode" onclick="playDrive('1dGwSUcxmVG9BuMIWPz58v2osMoiPAK1c')">남캐 좋아하는 남고딩의 주접 모음집 [원신]</div>
+    <div class="episode" onclick="playDrive('1jNzOND0x0lbS_dTTa8YNCHICfO-WzyY3')">내가 메인딜로 행자를 쓸 수 있었던 이유</div>
+    <div class="episode" onclick="playDrive('1sWMGoA3fSPDaqRIbunUA-g_icg0F1RRH')">너의 살결이 느껴져 [원신]</div>
+    <div class="episode" onclick="playDrive('10QIJJN7rtdN9GzL8GKqQyq5lnMAUemdI')">느비예트 풀돌은 이 영상으로 구경만 하세요</div>
+    <div class="episode" onclick="playDrive('1CDbVxZVxBYj3-SajQsasHv1zGd1ql-Jh')">메리마블링(비엘 웹툰) 굿즈 사는 남자</div>
+    <div class="episode" onclick="playDrive('1AZvzYuMVviEU8Vs0WtX6e4iH1CHvdd1N')">메인딜러 원탑 느비예트, 풀돌 성능 맛보기</div>
+    <div class="episode" onclick="playDrive('1deDtBUkWovwQRReZwbzBgfFL7UIZcmcr')">방랑자맘 들도 모르는 랑자의 숨겨진 비밀</div>
+    <div class="episode" onclick="playDrive('1CW1GWouT1KVfUC4KynVGnwoFGJ5hoybc')">보호자 없이 처음으로 해외여행 가는 만18세들 【일본1】 </div>
+    <div class="episode" onclick="playDrive('1TLWQJzWROP1gyc3nxBK15i-o98UrYxow')">사이노 맘들도 모를 사이노의 충격적인 비밀</div>
+    <div class="episode" onclick="playDrive('1GkeOZVYMy4e04fLLKWUwb6FHJ2Z-rEqa')">사이노 뽑지 마세요 저만 쓸거임</div>
+    <div class="episode" onclick="playDrive('1ssrH1u_HaY_2pZFhG4WbTeP0STzRhoWB')">삼성x원신 프리미엄 라운지 방문기</div>
+    <div class="episode" onclick="playDrive('1strUncKi3qI92vInPqA20PYKeCqxf4ej')">소 맘 분들도 몰랐을 소의 비밀</div>
+    <div class="episode" onclick="playDrive('1EYWoCXqFUC_Ss6elwfbQ4hUwsRoREopx')">소 좋아하시는 분들은 꼭 알아야 하는 정보</div>
+    <div class="episode" onclick="playDrive('1v_oA3gwJCkT_oIubOluJC6HbNIBQJiuI')">솔직히 플린스 내 취향은 아니긴 한데 잘생기긴 했음</div>
+    <div class="episode" onclick="playDrive('1PUYdJVeim2WSO6HEsY09_7rb7hkk9j-Q')">시골에서부터 도시까지 하루동안 신사만 3개 방문하는 영상 【일본3】 </div>
+    <div class="episode" onclick="playDrive('1Ng58ZaGE1kHvmm8C9LpwLKhWXpkyPmlw')">신 4명이서 몬드에서 폰타인까지 걸어가기</div>
+    <div class="episode" onclick="playDrive('1vVOL-r3Ee2PMpziGRX2T1HQpGzjoqNWJ')">아니 사이노 성능 개좋은데？</div>
+    <div class="episode" onclick="playDrive('11V3og1sXE3WiaAoPSL_2cIkDeuC70C7R')">아무도 안 부러워 하는 타이나리 5돌</div>
+    <div class="episode" onclick="playDrive('1z8E7-9v3jTcFF4tJI4M1LMTiECgzvA7p')">아직까지 느비예트를 고민중이라면 이 영상을 꼭 보세요</div>
+    <div class="episode" onclick="playDrive('1W_uc6m7pOTUQDJm9d94ZMHVOdHEStwLk')">알볼로피자 목동본점가서 씹덕 대사 치고 왔습니다 ｜ 원신 x 피자 알볼로</div>
+    <div class="episode" onclick="playDrive('1CUrrm2gKHFNNveVtU7GuulBEUksO51Ti')">알하이탐만 없었으면 내가 카베를... [원신]</div>
+    <div class="episode" onclick="playDrive('1uKd4E5ltqzZUr8dxzdMH4NjFpSuZMWJY')">여러분 알하이탐하고 카베가 사귄대요!!! [원신]</div>
+    <div class="episode" onclick="playDrive('14M4kZLjFeFVBLhNC6yGHJrbq3ho7gCkr')">오랜만에 문화생활 즐기고 온 고3 유튜버</div>
+    <div class="episode" onclick="playDrive('1HwxSlVoZCbXRY_UiGPg9XUhLuK90ahWW')">우연히 지나가면서 발견한 일본 냉동삼겹살 가게 【일본4】  </div>
+    <div class="episode" onclick="playDrive('12XS4x6GNh7iE2V3JB62UpjKYRcr8oB9o')">원신 소 이렇게 그리는건 좀 아니지 않냐？</div>
+    <div class="episode" onclick="playDrive('1yvV_YwrDra6gu4ooL-e-bA4fUNYWa6J3')">원신 유튜버, 당신도 나락에 갈 수 있다</div>
+    <div class="episode" onclick="playDrive('1RQkpGwjTfxxn4msxsidSJbfiK0vkRwxi')">원신 유튜버의 반란</div>
+    <div class="episode" onclick="playDrive('1CpexDF5kUpEbWNwZWHyntDA88-4jkBo7')">이거 있으면 원태기 그냥 극복할 수 있음</div>
+    <div class="episode" onclick="playDrive('1iJpR6eSxDJ9klArlW9lW5aU3QrxisYQx')">잘생긴 남자 캐릭터 좋ㅇ... 사랑합니다</div>
+    <div class="episode" onclick="playDrive('1WXxs-373P0JRdq9b3JVvx6xTKE8ZLzIv')">잠깐 쉬느라 놓친 남캐가 너무 많다..</div>
+    <div class="episode" onclick="playDrive('1N-5D4fOtrbI7V74EOT4h83fGJMVD618G')">죄송합니다, 저는 원신 유튜버로서 자격이 없습니다</div>
+    <div class="episode" onclick="playDrive('1Mc0xOe0l4muyFbO1QpSrb3ktmL_opZ6f')">처음으로 혼자 운전해서 친구 만나러 가는 초보운전 브이로그 【한국1】 </div>
+    <div class="episode" onclick="playDrive('1e6bKbyGA84NQ9pchNAkqH1HLqwsSlKlc')">최근 갑자기 수인이 귀여워 보이기 시작했다</div>
+    <div class="episode" onclick="playDrive('15s4g14U88LwE1uOx5475ry1u8Tm3GBnY')">출시 이후로 계속 떡상중인 캐릭터 소 </div>
+    <div class="episode" onclick="playDrive('1yWUI3zzuO6S1yEu2SIq04Oplxyrc3jM5')">카드게임 하랬더니 데이트 하고 있음 [원신]</div>
+    <div class="episode" onclick="playDrive('1tanoMuNC545FPN0YUHleB35xAX6sqiGz')">카베가 이제 알하이탐하고 같이 안 살거라고？ [원신]</div>
+    <div class="episode" onclick="playDrive('1fQb4MhlNmOLIHV7XJK8pdxN_Et1Ocwal')">카베가 티바트 제일가는 꽃미남인 이유 [원신]</div>
+    <div class="episode" onclick="playDrive('1IxYQNA5AyhiWuMhFN3RMd7bX60k8FYlL')">카베가 한번 훑고 지나간 원신 2023 팝없스토어</div>
+    <div class="episode" onclick="playDrive('1tDAnSz1km4n2Jhoa6Xx64J3cbDWaQVpz')">카즈하 [원신]</div>
+    <div class="episode" onclick="playDrive('1vqalGUv7hWzY1l4p45d0ybuwxTr6Aiby')">클레와 함께하는 원신 여름축제</div>
+    <div class="episode" onclick="playDrive('1-e810uFPDWrCIiMIjpPY7D9ZtfA-s0ao')">틈만 나면 애니 굿즈 사러 돌아다니는 오타쿠들 【일본2】 </div>
+    <div class="episode" onclick="playDrive('1gYTGCE0j5fYivKYNTH4ax1krygNcUxHk')">한국인들의 일본 쇼핑 브이로그 【일본5】 </div>
+    <div class="episode" onclick="playDrive('1p3mlfJADwfOwhP6SBR98d1F_1KnOzhW2')">할때마다 문제가 생기는 원신 여름축제</div>
+  `;
+}
+
+// 📺 작품 22 에피소드
+function showEpisodes22() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 모둠튀김 다시보기</h3>
+
+    <div class="episode" onclick="playDrive('12fEiObss5LXUWzgPMvTtDj_ncytcZGCs')">1시간 잡담 하다가 끌 예정</div>
+    <div class="episode" onclick="playDrive('192H1UjNk-ZxgrdxDa-zyHOtioCNB2BCl')">2400km 장거리 주행 1 [_25.12.21]</div>
+    <div class="episode" onclick="playDrive('1Ts5IC_Ux-b_Yv1nd7ZQvSG3TJZxTWbZO')">2400km 장거리 주행 2 [_25.12.21]</div>
+    <div class="episode" onclick="playDrive('12PhA_9DuY4i9ac7n9SX5-s1Cy-ZNJxw4')">그냥 고3이 행복하게 웃는게 전부인 영상</div>
+    <div class="episode" onclick="playDrive('1w2OaVbQHi2k1OIqvH-7INV3Js5CWI1UE')">발렌타인 데이 화물 배송 :) [‘26.02.13]</div>
+    <div class="episode" onclick="playDrive('1MoI7O8L1WvlIHG5rb8HYg12LMuwT-6p-')">부실공사 장인이 원신 이벤트 하는 방법</div>
+    <div class="episode" onclick="playDrive('14KzHvmrS6bUCDemAkmyCgmKVed6-R0Z7')">사막 거북이 1시간동안 때리는 영상 [원신]</div>
+    <div class="episode" onclick="playDrive('1y0CkNgVzLyURk3Dpyr4W_kvgR72GoV6K')">샤갈</div>
+    <div class="episode" onclick="playDrive('1LAM48gv-rsP20H4Y1VXfHgY5Y6otJ06e')">유로트럭 고인물들이 트럭으로 노는 방법</div>
+    <div class="episode" onclick="playDrive('1dLs4EofQ9C7XdJJaq057Wv44287xoaPS')">유로트럭 하면서 잡담하는 방송 [_26.01.12]</div>
+    <div class="episode" onclick="playDrive('1zFvObCUsSx2142Ah8wIMYhPEWV6fJtof')">잔잔한 저녁 트럭 배송 방송  [_26.02.01]</div>
+    <div class="episode" onclick="playDrive('1AIN0FWRC4Xh8eETdqw-B3n6P_fZ5TaH2')">출근 하기 싫다 (오늘도 게임 안 함)</div>
+    <div class="episode" onclick="playDrive('1u-MSbWiAA-XSn6xY_Bcxyb8osBxUl8Jk')">카메라 테스트 하면서 찍은 운전하면서 노래 부르는 영상</div>
+    <div class="episode" onclick="playDrive('1N9N3AH4QOBS1osrRUxq77M1-w8dJFrML')">학교 가기 너무 싫다</div>
+    <div class="episode" onclick="playDrive('1J31R76i1yKof6a-KUFidYOeKuWUt2Twg')">Nordic horizons 맵 구경 하는 라이브 [_25.11.30 ]</div>
+  `;
+}
+
+// 🎥 구글 드라이브 재생
+function playDrive(id) {
+  document.getElementById("player").src =
+    "https://drive.google.com/file/d/" + id + "/preview";
+}
+
+function playDrive(id) {
+  const player = document.getElementById("player");
+  const box = document.getElementById("playerBox");
+
+  player.src = "https://drive.google.com/file/d/" + id + "/preview";
+
+  box.style.display = "block"; // 🔥 이거 추가
+}
+
+// 🎬 유튜브 재생
+function playYT(id) {
+  document.getElementById("player").src =
+    "https://www.youtube.com/embed/" + id + "?autoplay=1";
+}
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAq9UMbH0T6Mqp0OnyyW2fRWg2XSZLkDdc",
+  authDomain: "jtt-start.firebaseapp.com",
+  projectId: "jtt-start",
+  storageBucket: "jtt-start.firebasestorage.app",
+  messagingSenderId: "455277144444",
+  appId: "1:455277144444:web:cfbe4f72e126c74616dcf9",
+  measurementId: "G-EJKVFR0BCJ"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+</script>
+
+<script>
+function signup() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(() => alert("회원가입 성공"))
+    .catch(err => alert(err.message));
+}
+
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => alert("로그인 성공"))
+    .catch(err => alert(err.message));
+}
+
+function logout() {
+  auth.signOut();
+  alert("로그아웃됨");
+}
+</script>
+
+<script>
+auth.onAuthStateChanged(user => {
+  if (user && user.email === "junyy5454@gmail.com") {
+    // 로그인 상태
+    document.getElementById("privateContent").style.display = "block";
+  } else {
+    // 로그아웃 상태
+    document.getElementById("privateContent").style.display = "none";
+  }
+});
+
+</script>
+
+<script>
+document.addEventListener("click", function(e) {
+
+  // 🎬 작품 클릭 → 맨 위로 이동
+  if (e.target.closest(".content-item")) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  // 📺 에피소드 클릭 → 플레이어 위치로 (조금 위쪽으로)
+  if (e.target.closest(".episode")) {
+    const playerBox = document.getElementById("playerBox");
+
+    if (playerBox) {
+      const y = playerBox.getBoundingClientRect().top + window.pageYOffset - 100;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth"
+      });
+    }
+  }
+
+});
+</script>
+
+<script>
+document.getElementById("logo").addEventListener("click", function() {
+  location.reload();
+});
+</script>
+
+</body>
+
+<script>
+function searchContent() {
+  const input = document.getElementById("searchInput").value.toLowerCase().trim();
+  const items = document.querySelectorAll(".content-item");
+  const titles = document.querySelectorAll("h2"); // 🔥 큰 제목들
+
+  if (input !== "") {
+    // 🔥 큰 제목 숨기기
+    titles.forEach(t => t.style.display = "none");
+
+    // 🔥 작품 필터
+    items.forEach(item => {
+      const title = item.querySelector("p");
+      if (!title) return;
+
+      const text = title.innerText.toLowerCase();
+
+      if (text.includes(input)) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+  } else {
+    // 🔥 복구
+    titles.forEach(t => t.style.display = "block");
+
+    items.forEach(item => {
+      item.style.display = "block";
+    });
+  }
+}
+</script>
+
+</html>
