@@ -138,6 +138,11 @@ iframe {
           <p>김민재 다시보기 3</p>
         </div>
 
+        <div class="content-item" onclick="showEpisodes23()">
+          <img src="https://imgur.com/2Pm6XOq.png">
+          <p>음악</p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -943,6 +948,34 @@ function showEpisodes22() {
     <div class="episode" onclick="playDrive('1J31R76i1yKof6a-KUFidYOeKuWUt2Twg')">Nordic horizons 맵 구경 하는 라이브 [_25.11.30 ]</div>
   `;
 }
+
+// 📺 개발자 전용
+function showEpisodes23() {
+  const list = document.getElementById("episodeList");
+
+  list.innerHTML = `
+    <h3>📺 Play Music</h3>
+    아이엠스타! 오리지널
+    <div class="episode" onclick="playDrive('1KqkoOd7i0Kde9cupwO8ugxHYHpHl1WzL')">아이돌은 카드가 생명!</div>
+    <div class="episode" onclick="playDrive('1bG54aMNw8w-mj6KERLwDhDFNnbLSRcuR')">아이돌은 카드가 생명! Ver.2</div>
+    <div class="episode" onclick="playDrive('1G_FWsD2gSV7iqo-_49zZcsZuTsCL53Bh')">아이돌은 카드가 생명! Ver.3</div>
+    <div class="episode" onclick="playDrive('15R3zGLl7MPATIggjCLYr8g9CZ_ukq2Wu')">아이돌은 카드가 생명! Ver.4</div>
+    아이엠스타!X프리파라 더 무비 - 만남의 기적! -
+    <div class="episode" onclick="playDrive('1WkW5q0NZuVBCVI3uXgLpp72NTmr_Um_m')">프리티X액티비티 inst</div>
+    <div class="episode" onclick="playDrive('1bSR7ODk2adjputpDXiR-60Oxl-hm-sWG')">프리티X액티비티</div>
+    <div class="episode" onclick="playDrive('1PShzRC0tH1gF89d_f1z5R0nwGaAZDM-R')">해피 튜닝 (Off Vocal)</div>
+    <div class="episode" onclick="playDrive('1kpP8Wq9EjMzUoTiRJOEf5ITIZO3PKSUH')">해피 튜닝 (Movie Size)</div>
+    아이엠스타! 10주년 극장판 미래로의 스타웨이
+    <div class="episode" onclick="playDrive('1SZP35QnagiQiAKn3K31IfmPdTIQw4Ifl')">MY STARWAY</div>
+    <div class="episode" onclick="playDrive('1BgHDKkxMq83ppveDdMoSoKqV9rHPL_wL')">TRAVEL RIBBON</div>
+    New Jeans
+    <div class="episode" onclick="playDrive('1-hBw4uwGzYf_LHXajcAtBUkd1qqXkk9X')">How Sweet inst</div>
+    <div class="episode" onclick="playDrive('1P1zZuumfo_XxijoPA2ETe3Db-KVM3a7G')">Bubble Gum inst</div>
+    <div class="episode" onclick="playDrive('1WT4ag84-jQS2mFLcKvhnb364M9bs2WXd')">Right Now inst</div>
+    <div class="episode" onclick="playDrive('1YqukX_pH0ddTcSOoKuguPL0juP5uZY2E')">Supernatural inst</div>
+  `;
+}
+
 
 // 🎥 구글 드라이브 재생
 function playDrive(id) {
